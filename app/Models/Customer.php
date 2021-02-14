@@ -22,3 +22,17 @@ class Customer extends Model
         return $this->belongsTo(User::class);
     }
 }
+
+
+
+
+
+
+
+
+
+// h: DOKUMENTASI
+// pada table customers, kita buat kolom api_token untuk mengautentikasi user
+// namanya harus api_token
+// dan nanti kita kirimkan di header Authorization -> Bearer <token_disini>
+// untuk middleware auth:api, kita gunakan Bearer token dari kolom api_token
