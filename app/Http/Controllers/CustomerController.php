@@ -59,7 +59,10 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return response()->json([
+            'message' => 'Get customer by id',
+            'data' => $customer
+        ]);
     }
 
     /**
@@ -80,9 +83,14 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(CustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->update($request->validated());
+
+        return response()->json([
+            'message' => 'Customer was updated successfully',
+            'data' => $customer
+        ]);
     }
 
     /**
@@ -93,6 +101,10 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+
+        return response()->json([
+            'message' => 'Customer was deleted successfully',
+        ]);
     }
 }
