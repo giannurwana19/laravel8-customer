@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CustomerController extends Controller
 {
@@ -14,7 +17,12 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customer = Customer::all();
+
+        return response()->json([
+            'message' => 'List all customers',
+            'data' => $customer,
+        ]);
     }
 
     /**
@@ -33,9 +41,14 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
-        //
+        $customer = Customer::create($request->validated());
+
+        return response()->json([
+            'message' => 'Customer was created successfully',
+            'data' => $customer
+        ], Response::HTTP_CREATED);
     }
 
     /**
