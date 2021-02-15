@@ -8,7 +8,9 @@
 
       <ul class="list-unstyled">
         <li>
-          <a href="#"> Add New Customer</a>
+          <router-link :to="{ name: 'customers.create' }">
+            Add new Customer
+          </router-link>
         </li>
         <li>
           <router-link :to="{ name: 'customers.index' }">

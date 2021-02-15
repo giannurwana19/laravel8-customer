@@ -17,7 +17,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::all();
+        $customer = Customer::latest()->get();
 
         return response()->json([
             'message' => 'List all customers',
@@ -33,7 +33,7 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-        $customer = Customer::create($request->validated());
+        $customer = $request->user()->customers()->create($request->validated());
 
         return response()->json([
             'message' => 'Customer was created successfully',

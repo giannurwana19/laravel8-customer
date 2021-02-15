@@ -4,10 +4,7 @@
       <div v-for="customer in customers" :key="customer.id">
         <li class="list-group-item border">
           <div class="row">
-            <router-link
-              to="customers"
-              class="d-flex p-2text-decoration-none"
-            >
+            <router-link to="customers" class="d-flex p-2text-decoration-none">
               <div class="col-md-2">
                 <div
                   class="avatar btn rounded border text-white bg-primary align-center"
@@ -17,7 +14,8 @@
               </div>
             </router-link>
             <div class="col-md-10">
-              <label>{{ customer.name }}</label><br>
+              <label>{{ customer.name }}</label
+              ><br />
               <span class="text-muted small text-truncate">
                 {{ customer.email }}
               </span>

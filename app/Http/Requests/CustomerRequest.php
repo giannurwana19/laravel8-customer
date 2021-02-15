@@ -24,7 +24,6 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
             'name' => ['required', 'unique:customers,name,' . optional($this->name)->id],
             'email' => ['required', 'email'],
             'telephone' => 'required',

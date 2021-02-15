@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
     // 1 user memiliki n customer
-    public function customer()
+    public function customers()
     {
         return $this->hasMany(Customer::class);
     }
