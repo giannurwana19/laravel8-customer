@@ -11053,4 +11053,14 @@ a.text-dark:focus {
   width: 100%;
 }
 
+#list-customer {
+  max-height: 80vh;
+  margin-bottom: 10px;
+  overflow: scroll;
+}
+
+#list-customer::-webkit-scrollbar {
+  display: none;
+}
+
 

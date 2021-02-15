@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CustomerRequest;
+use App\Http\Resources\Customer as ResourcesCustomer;
 use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,10 +20,7 @@ class CustomerController extends Controller
     {
         $customer = Customer::latest()->get();
 
-        return response()->json([
-            'message' => 'List all customers',
-            'data' => $customer,
-        ]);
+        return ResourcesCustomer::collection($customer);
     }
 
     /**
@@ -35,10 +33,7 @@ class CustomerController extends Controller
     {
         $customer = $request->user()->customers()->create($request->validated());
 
-        return response()->json([
-            'message' => 'Customer was created successfully',
-            'data' => $customer
-        ], Response::HTTP_CREATED);
+        return (new ResourcesCustomer($customer))->response()->setStatusCode(201);
     }
 
     /**

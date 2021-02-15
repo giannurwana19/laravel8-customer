@@ -21,8 +21,11 @@ export default {
     create(data) {
       axios
         .post("http://127.0.0.1:8000/api/customers", data)
-        .then(() => {
-          this.$router.push({ name: "customers.index" });
+        .then(response => {
+          this.$router.push({
+            name: "customers.show",
+            params: { id: response.data.data.customer_id }
+          });
         })
         .catch(error => {
           this.errors = error.response.data.errors;

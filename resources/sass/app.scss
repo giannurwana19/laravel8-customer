@@ -1,11 +1,11 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 .sidenav {
     height: 100%;
@@ -19,25 +19,27 @@
 }
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
+    .sidenav {
+        padding-top: 15px;
+    }
 }
 
 @media screen and (max-width: 450px) {
-    .login-form{
+    .login-form {
         margin-top: 10%;
     }
 
-    .register-form{
+    .register-form {
         margin-top: 10%;
     }
 }
 
-@media screen and (min-width: 768px){
-    .main{
+@media screen and (min-width: 768px) {
+    .main {
         margin-left: 40%;
     }
 
-    .sidenav{
+    .sidenav {
         width: 40%;
         position: fixed;
         z-index: 1;
@@ -45,27 +47,26 @@
         left: 0;
     }
 
-    .login-form{
+    .login-form {
         margin-top: 60%;
     }
 
-    .register-form{
+    .register-form {
         margin-top: 20%;
     }
 }
 
-
-.main-text{
+.main-text {
     margin-top: 20%;
     padding: 60px;
     color: #fff;
 }
 
-.main-text h2{
+.main-text h2 {
     font-weight: 300;
 }
 
-.btn-blue{
+.btn-blue {
     background-color: #17a2b8 !important;
     color: #fff;
 }
@@ -105,7 +106,7 @@
     background: #118496;
 }
 
-#sidebar ul li.active>a {
+#sidebar ul li.active > a {
     color: #118496;
     background: #fff;
 }
@@ -113,4 +114,15 @@
 #page-content-wrapper {
     min-width: 0;
     width: 100%;
-  }
+}
+
+#list-customer {
+    max-height: 80vh;
+    margin-bottom: 10px;
+    overflow: scroll;
+    // -webkit-overflow-scrolling: touch;
+}
+
+#list-customer::-webkit-scrollbar {
+    display: none;
+}

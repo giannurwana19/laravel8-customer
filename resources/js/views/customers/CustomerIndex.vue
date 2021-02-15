@@ -1,11 +1,14 @@
 <template>
   <div>
-    <ul class="list-group">
+    <ul class="list-group" id="list-customer">
       <div v-for="customer in customers" :key="customer.id">
         <li class="list-group-item border">
           <div class="row">
             <router-link
-              :to="{ name: 'customers.show', params: { id: customer.id } }"
+              :to="{
+                name: 'customers.show',
+                params: { id: customer.customer_id }
+              }"
               class="d-flex p-2text-decoration-none"
             >
               <div class="col-md-2">

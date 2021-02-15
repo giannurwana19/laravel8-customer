@@ -2143,9 +2143,12 @@ __webpack_require__.r(__webpack_exports__);
     create: function create(data) {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://127.0.0.1:8000/api/customers", data).then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://127.0.0.1:8000/api/customers", data).then(function (response) {
         _this.$router.push({
-          name: "customers.index"
+          name: "customers.show",
+          params: {
+            id: response.data.data.customer_id
+          }
         });
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
@@ -2177,6 +2180,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -2278,6 +2284,9 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -39872,7 +39881,7 @@ var render = function() {
   return _c("div", [
     _c(
       "ul",
-      { staticClass: "list-group" },
+      { staticClass: "list-group", attrs: { id: "list-customer" } },
       _vm._l(_vm.customers, function(customer) {
         return _c("div", { key: customer.id }, [
           _c("li", { staticClass: "list-group-item border" }, [
@@ -39887,7 +39896,7 @@ var render = function() {
                     attrs: {
                       to: {
                         name: "customers.show",
-                        params: { id: customer.id }
+                        params: { id: customer.customer_id }
                       }
                     }
                   },
@@ -40011,6 +40020,7 @@ var render = function() {
             ])
           ])
         ]),
+        _vm._v(" "),
         _c("hr"),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
