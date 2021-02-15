@@ -22,7 +22,7 @@ export default {
       axios
         .post("http://127.0.0.1:8000/api/customers", data)
         .then(() => {
-          alert("Data berhasil ditambahkan");
+          this.$router.push({ name: "customers.index" });
         })
         .catch(error => {
           this.errors = error.response.data.errors;

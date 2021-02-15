@@ -2144,7 +2144,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://127.0.0.1:8000/api/customers", data).then(function () {
-        alert("Data berhasil ditambahkan");
+        _this.$router.push({
+          name: "customers.index"
+        });
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
       });
