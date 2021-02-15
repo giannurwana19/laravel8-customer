@@ -11,7 +11,9 @@
           <a href="#"> Add New Customer</a>
         </li>
         <li>
-          <a href="#"> All Customers</a>
+          <router-link :to="{ name: 'customers.index' }">
+            All Customers
+          </router-link>
         </li>
         <li>
           <a href="#"> Logout</a>
@@ -38,12 +40,37 @@
         <router-view></router-view>
       </div>
     </div>
-    <!-- /#page-content-wrapper -->
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["user"],
+  methods: {
+    getApiToken() {
+      window.axios.interceptors.request.use(
+        config => {
+          if (config.method === "get") {
+            config.url = `${config.url}?api_token=${this.user.api_token}`;
+          } else {
+            config.data = {
+              ...config.data,
+              api_token: this.user.api_token
+            };
+          }
+
+          return config;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+  },
+  created() {
+    this.getApiToken();
+  }
+};
 </script>
 
 <style></style>
