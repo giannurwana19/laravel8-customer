@@ -4,7 +4,10 @@
       <div v-for="customer in customers" :key="customer.id">
         <li class="list-group-item border">
           <div class="row">
-            <router-link to="customers" class="d-flex p-2text-decoration-none">
+            <router-link
+              :to="{ name: 'customers.show', params: { id: customer.id } }"
+              class="d-flex p-2text-decoration-none"
+            >
               <div class="col-md-2">
                 <div
                   class="avatar btn rounded border text-white bg-primary align-center"
