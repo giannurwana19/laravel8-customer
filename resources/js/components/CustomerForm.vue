@@ -7,9 +7,13 @@
           type="text"
           id="name"
           v-model="name"
-          class="form-control"
+          :class="errorClass('name')"
           placeholder="Input name here"
+          @input="clearError('name')"
         />
+        <div class="invalid-feedback">
+          <p v-text="errorValue('name')"></p>
+        </div>
       </div>
     </div>
     <div class="form-group row">
@@ -19,9 +23,13 @@
           type="email"
           id="email"
           v-model="email"
-          class="form-control"
+          :class="errorClass('email')"
           placeholder="Input email here"
+          @input="clearError('email')"
         />
+        <div class="invalid-feedback">
+          <p v-text="errorValue('email')"></p>
+        </div>
       </div>
     </div>
     <div class="form-group row">
@@ -31,9 +39,13 @@
           type="text"
           id="telephone"
           v-model="telephone"
-          class="form-control"
+          :class="errorClass('telephone')"
           placeholder="Input telephone here"
+          @input="clearError('telephone')"
         />
+        <div class="invalid-feedback">
+          <p v-text="errorValue('telephone')"></p>
+        </div>
       </div>
     </div>
     <div class="form-group row">
@@ -44,9 +56,13 @@
           id=""
           cols="30"
           rows="4"
-          class="form-control"
+          :class="errorClass('address')"
           placeholder="Input address here"
+          @input="clearError('address')"
         ></textarea>
+        <div class="invalid-feedback">
+          <p v-text="errorValue('name')"></p>
+        </div>
       </div>
     </div>
 
@@ -60,6 +76,8 @@
 
 <script>
 export default {
+  props: ["errors"],
+
   data() {
     return {
       name: "",
@@ -81,11 +99,31 @@ export default {
       this.cleanForm();
     },
 
+    errorValue(column) {
+      if (this.errors && this.errors[column]) {
+        return this.errors[column][0];
+      }
+    },
+
+    errorClass(column) {
+      if (this.errors && this.errors[column]) {
+        return ["form-control", "is-invalid"];
+      }
+
+      return "form-control";
+    },
+
     cleanForm() {
       this.name = "";
       this.email = "";
       this.telephone = "";
       this.address = "";
+    },
+
+    clearError(column) {
+      if (this.errors && this.errors[column]) {
+        this.errors[column] = null;
+      }
     }
   }
 };

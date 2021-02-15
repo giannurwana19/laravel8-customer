@@ -2008,7 +2008,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["errors"],
   data: function data() {
     return {
       name: "",
@@ -2027,11 +2044,28 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.cleanForm();
     },
+    errorValue: function errorValue(column) {
+      if (this.errors && this.errors[column]) {
+        return this.errors[column][0];
+      }
+    },
+    errorClass: function errorClass(column) {
+      if (this.errors && this.errors[column]) {
+        return ["form-control", "is-invalid"];
+      }
+
+      return "form-control";
+    },
     cleanForm: function cleanForm() {
       this.name = "";
       this.email = "";
       this.telephone = "";
       this.address = "";
+    },
+    clearError: function clearError(column) {
+      if (this.errors && this.errors[column]) {
+        this.errors[column] = null;
+      }
     }
   }
 });
@@ -2100,13 +2134,19 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     CustomerForm: _components_CustomerForm_vue__WEBPACK_IMPORTED_MODULE_1__.default
   },
+  data: function data() {
+    return {
+      errors: null
+    };
+  },
   methods: {
     create: function create(data) {
+      var _this = this;
+
       axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://127.0.0.1:8000/api/customers", data).then(function () {
-        alert('Data berhasil ditambahkan');
-        document.location.href = '';
+        alert("Data berhasil ditambahkan");
       })["catch"](function (error) {
-        console.log(error);
+        _this.errors = error.response.data.errors;
       });
     }
   }
@@ -6790,7 +6830,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.avatar {\n  height: 40px;\n  widows: 40px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.avatar {\r\n  height: 40px;\r\n  widows: 40px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39340,18 +39380,29 @@ var render = function() {
                 expression: "name"
               }
             ],
-            staticClass: "form-control",
+            class: _vm.errorClass("name"),
             attrs: { type: "text", id: "name", placeholder: "Input name here" },
             domProps: { value: _vm.name },
             on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                },
+                function($event) {
+                  return _vm.clearError("name")
                 }
-                _vm.name = $event.target.value
-              }
+              ]
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _c("p", {
+              domProps: { textContent: _vm._s(_vm.errorValue("name")) }
+            })
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -39372,7 +39423,7 @@ var render = function() {
                 expression: "email"
               }
             ],
-            staticClass: "form-control",
+            class: _vm.errorClass("email"),
             attrs: {
               type: "email",
               id: "email",
@@ -39380,14 +39431,25 @@ var render = function() {
             },
             domProps: { value: _vm.email },
             on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.email = $event.target.value
+                },
+                function($event) {
+                  return _vm.clearError("email")
                 }
-                _vm.email = $event.target.value
-              }
+              ]
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _c("p", {
+              domProps: { textContent: _vm._s(_vm.errorValue("email")) }
+            })
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -39411,7 +39473,7 @@ var render = function() {
                 expression: "telephone"
               }
             ],
-            staticClass: "form-control",
+            class: _vm.errorClass("telephone"),
             attrs: {
               type: "text",
               id: "telephone",
@@ -39419,14 +39481,25 @@ var render = function() {
             },
             domProps: { value: _vm.telephone },
             on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.telephone = $event.target.value
+                },
+                function($event) {
+                  return _vm.clearError("telephone")
                 }
-                _vm.telephone = $event.target.value
-              }
+              ]
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _c("p", {
+              domProps: { textContent: _vm._s(_vm.errorValue("telephone")) }
+            })
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -39447,7 +39520,7 @@ var render = function() {
                 expression: "address"
               }
             ],
-            staticClass: "form-control",
+            class: _vm.errorClass("address"),
             attrs: {
               id: "",
               cols: "30",
@@ -39456,14 +39529,25 @@ var render = function() {
             },
             domProps: { value: _vm.address },
             on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              input: [
+                function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.address = $event.target.value
+                },
+                function($event) {
+                  return _vm.clearError("address")
                 }
-                _vm.address = $event.target.value
-              }
+              ]
             }
-          })
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "invalid-feedback" }, [
+            _c("p", {
+              domProps: { textContent: _vm._s(_vm.errorValue("name")) }
+            })
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -39559,9 +39643,12 @@ var render = function() {
     "div",
     { staticClass: "customer-create" },
     [
-      _c("h1", [_vm._v("customer freate")]),
+      _c("h1", [_vm._v("Create Customer")]),
       _vm._v(" "),
-      _c("CustomerForm", { on: { submitted: _vm.create } })
+      _c("CustomerForm", {
+        attrs: { errors: _vm.errors },
+        on: { submitted: _vm.create }
+      })
     ],
     1
   )

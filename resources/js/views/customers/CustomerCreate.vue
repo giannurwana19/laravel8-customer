@@ -1,7 +1,7 @@
 <template>
   <div class="customer-create">
-    <h1>customer freate</h1>
-    <CustomerForm @submitted="create" />
+    <h1>Create Customer</h1>
+    <CustomerForm @submitted="create" :errors="errors" />
   </div>
 </template>
 
@@ -10,6 +10,13 @@ import axios from "axios";
 import CustomerForm from "../../components/CustomerForm.vue";
 export default {
   components: { CustomerForm },
+
+  data() {
+    return {
+      errors: null
+    };
+  },
+
   methods: {
     create(data) {
       axios
@@ -18,7 +25,7 @@ export default {
           alert("Data berhasil ditambahkan");
         })
         .catch(error => {
-          console.log(error);
+          this.errors = error.response.data.errors;
         });
     }
   }
