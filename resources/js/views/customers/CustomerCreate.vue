@@ -1,7 +1,7 @@
 <template>
   <div class="customer-create">
     <h1>Create Customer</h1>
-    <CustomerForm @submitted="create" :errors="errors" />
+    <CustomerForm @submitted="create" :errors="errors" :data="{}" />
   </div>
 </template>
 
@@ -22,6 +22,9 @@ export default {
       axios
         .post("http://127.0.0.1:8000/api/customers", data)
         .then(response => {
+          this.$toast.success("Customer was created successfully!", {
+            position: "top-right"
+          });
           this.$router.push({
             name: "customers.show",
             params: { id: response.data.data.customer_id }

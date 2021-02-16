@@ -11,7 +11,9 @@
         >
           Edit
         </router-link>
-        <router-link to="" class="btn btn-outline-danger">Delete</router-link>
+        <button class="btn btn-outline-danger" @click="destroy">
+          Delete
+        </button>
       </div>
     </div>
     <div class="row">
@@ -63,6 +65,25 @@ export default {
         this.loading = false;
       } catch (error) {
         console.log(error);
+      }
+    },
+
+    destroy() {
+      if (confirm("are you sure?")) {
+        axios
+          .delete(
+            `http://127.0.0.1:8000/api/customers/${this.$route.params.id}`
+          )
+          .then(response => {
+            this.$toast.success(response.data.message, {
+              position: "top-right"
+            });
+            this.$router.push({ name: "customers.index" });
+          })
+          .catch(error => {
+            alert("cannot delete customer!");
+            console.log(error);
+          });
       }
     }
   },

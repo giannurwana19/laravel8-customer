@@ -25,6 +25,9 @@ export default {
           data
         )
         .then(() => {
+          this.$toast.success("Customer was updated successfully!", {
+            position: "top-right"
+          });
           this.$router.push({
             name: "customers.show",
             params: { id: this.$route.params.id }

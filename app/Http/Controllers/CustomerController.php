@@ -72,7 +72,7 @@ class CustomerController extends Controller
         $customer->delete();
 
         return response()->json([
-            'message' => 'Customer was deleted successfully',
+            'message' => 'Customer was deleted successfully!',
         ]);
     }
 }
