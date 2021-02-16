@@ -28,7 +28,7 @@
       <nav
         class="navbar navbar-light bg-light mt-4 border-bottom border-secondary"
       >
-        <div class="navbar-brand">Title</div>
+        <div class="navbar-brand">{{ title }}</div>
         <div>
           <input
             class="form-control mr-sm-2"
@@ -48,6 +48,22 @@
 <script>
 export default {
   props: ["user"],
+  data() {
+    return {
+      title: ""
+    };
+  },
+
+  watch: {
+    $route(to, from) {
+      this.title = to.meta.title;
+    },
+
+    title() {
+      document.title = `${this.title} | G-Customer`;
+    }
+  },
+
   methods: {
     getApiToken() {
       window.axios.interceptors.request.use(
@@ -70,6 +86,7 @@ export default {
     }
   },
   created() {
+    this.title = this.$route.meta.title;
     this.getApiToken();
   }
 };

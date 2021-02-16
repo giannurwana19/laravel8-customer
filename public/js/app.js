@@ -1911,6 +1911,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["user"],
+  data: function data() {
+    return {
+      title: ""
+    };
+  },
+  watch: {
+    $route: function $route(to, from) {
+      this.title = to.meta.title;
+    },
+    title: function title() {
+      document.title = "".concat(this.title, " | G-Customer");
+    }
+  },
   methods: {
     getApiToken: function getApiToken() {
       var _this = this;
@@ -1931,6 +1944,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   created: function created() {
+    this.title = this.$route.meta.title;
     this.getApiToken();
   }
 });
@@ -2130,7 +2144,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_CustomerForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/CustomerForm.vue */ "./resources/js/components/CustomerForm.vue");
-//
 //
 //
 //
@@ -2625,22 +2638,37 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_5__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_6__.default);
 var routes = [{
   path: "/",
-  component: _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default
+  component: _components_ExampleComponent_vue__WEBPACK_IMPORTED_MODULE_0__.default,
+  meta: {
+    title: "welcome"
+  }
 }, {
   path: "/customers",
   name: "customers.index",
+  meta: {
+    title: "List customers"
+  },
   component: _views_customers_CustomerIndex_vue__WEBPACK_IMPORTED_MODULE_1__.default
 }, {
   path: "/customers/create",
   name: "customers.create",
+  meta: {
+    title: "Create Customer"
+  },
   component: _views_customers_CustomerCreate_vue__WEBPACK_IMPORTED_MODULE_2__.default
 }, {
   path: "/customers/:id",
   name: "customers.show",
+  meta: {
+    title: "Detail Customer"
+  },
   component: _views_customers_CustomerShow_vue__WEBPACK_IMPORTED_MODULE_3__.default
 }, {
   path: "/customers/:id/edit",
   name: "customers.edit",
+  meta: {
+    title: "Edit Customer"
+  },
   component: _views_customers_CustomerEdit_vue__WEBPACK_IMPORTED_MODULE_4__.default
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_6__.default({
@@ -39763,7 +39791,20 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { attrs: { id: "page-content-wrapper" } }, [
-      _vm._m(2),
+      _c(
+        "nav",
+        {
+          staticClass:
+            "navbar navbar-light bg-light mt-4 border-bottom border-secondary"
+        },
+        [
+          _c("div", { staticClass: "navbar-brand" }, [
+            _vm._v(_vm._s(_vm.title))
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
+        ]
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "container-fluid pt-4" }, [_c("router-view")], 1)
     ])
@@ -39788,23 +39829,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "nav",
-      {
-        staticClass:
-          "navbar navbar-light bg-light mt-4 border-bottom border-secondary"
-      },
-      [
-        _c("div", { staticClass: "navbar-brand" }, [_vm._v("Title")]),
-        _vm._v(" "),
-        _c("div", [
-          _c("input", {
-            staticClass: "form-control mr-sm-2",
-            attrs: { id: "searchTerm", placeholder: "Search..." }
-          })
-        ])
-      ]
-    )
+    return _c("div", [
+      _c("input", {
+        staticClass: "form-control mr-sm-2",
+        attrs: { id: "searchTerm", placeholder: "Search..." }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -40127,8 +40157,6 @@ var render = function() {
     "div",
     { staticClass: "customer-create" },
     [
-      _c("h1", [_vm._v("Create Customer")]),
-      _vm._v(" "),
       _c("CustomerForm", {
         attrs: { errors: _vm.errors, data: {} },
         on: { submitted: _vm.create }

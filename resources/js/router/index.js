@@ -11,26 +11,31 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    component: ExampleComponent
+    component: ExampleComponent,
+    meta: { title: "welcome" }
   },
   {
     path: "/customers",
     name: "customers.index",
+    meta: { title: "List customers" },
     component: CustomerIndex
   },
   {
     path: "/customers/create",
     name: "customers.create",
+    meta: { title: "Create Customer" },
     component: CustomerCreate
   },
   {
     path: "/customers/:id",
     name: "customers.show",
+    meta: { title: "Detail Customer" },
     component: CustomerShow
   },
   {
     path: "/customers/:id/edit",
     name: "customers.edit",
+    meta: { title: "Edit Customer" },
     component: CustomerEdit
   }
 ];

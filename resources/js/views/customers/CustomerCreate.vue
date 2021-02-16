@@ -1,6 +1,5 @@
 <template>
   <div class="customer-create">
-    <h1>Create Customer</h1>
     <CustomerForm @submitted="create" :errors="errors" :data="{}" />
   </div>
 </template>
