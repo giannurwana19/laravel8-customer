@@ -11,13 +11,7 @@
               }"
               class="d-flex p-2text-decoration-none"
             >
-              <div class="col-md-2">
-                <div
-                  class="avatar btn rounded border text-white bg-primary align-center"
-                >
-                  <center>Ta</center>
-                </div>
-              </div>
+              <CustomerLogo :name="customer.name" />
             </router-link>
             <div class="col-md-10">
               <label>{{ customer.name }}</label
@@ -35,7 +29,9 @@
 
 <script>
 import axios from "axios";
+import CustomerLogo from "../../components/CustomerLogo.vue";
 export default {
+  components: { CustomerLogo },
   data() {
     return {
       customers: []

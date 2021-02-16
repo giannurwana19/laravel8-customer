@@ -7,12 +7,12 @@
       </div>
 
       <ul class="list-unstyled">
-        <li>
+        <li :class="{ active: title === 'Create Customer' }">
           <router-link :to="{ name: 'customers.create' }">
             Add new Customer
           </router-link>
         </li>
-        <li>
+        <li :class="{ active: title === 'List Customers' }">
           <router-link :to="{ name: 'customers.index' }">
             All Customers
           </router-link>
@@ -50,7 +50,8 @@ export default {
   props: ["user"],
   data() {
     return {
-      title: ""
+      title: "",
+      active: "active"
     };
   },
 

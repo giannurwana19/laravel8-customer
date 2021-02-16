@@ -17,7 +17,7 @@ const routes = [
   {
     path: "/customers",
     name: "customers.index",
-    meta: { title: "List customers" },
+    meta: { title: "List Customers" },
     component: CustomerIndex
   },
   {

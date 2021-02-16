@@ -18,11 +18,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div
-          class="avatar btn rounded border text-white bg-primary align-center"
-        >
-          <center>Ta</center>
-        </div>
+        <CustomerLogo :name="customer.name" />
         <h4 class="d-inline ml-2">{{ customer.name }}</h4>
       </div>
     </div>
@@ -47,7 +43,9 @@
 </template>
 
 <script>
+import CustomerLogo from "../../components/CustomerLogo.vue";
 export default {
+  components: { CustomerLogo },
   data() {
     return {
       customer: {},
