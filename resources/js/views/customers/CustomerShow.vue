@@ -2,12 +2,15 @@
   <div v-if="!loading">
     <div class="row mb-3">
       <div class="col-md-2">
-        <router-link :to="{ name: 'customers.index' }" class="btn btn-light"
-          >Back</router-link
-        >
+        <a href="#" @click="$router.back()" class="btn btn-light">Back</a>
       </div>
       <div class="col-md-2">
-        <router-link to="" class="btn btn-outline-success">Edit</router-link>
+        <router-link
+          :to="{ name: 'customers.edit', params: { id: $route.params.id } }"
+          class="btn btn-outline-success"
+        >
+          Edit
+        </router-link>
         <router-link to="" class="btn btn-outline-danger">Delete</router-link>
       </div>
     </div>

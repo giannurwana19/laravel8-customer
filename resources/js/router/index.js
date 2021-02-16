@@ -4,6 +4,7 @@ import ExampleComponent from "../components/ExampleComponent.vue";
 import CustomerIndex from "../views/customers/CustomerIndex.vue";
 import CustomerCreate from "../views/customers/CustomerCreate.vue";
 import CustomerShow from "../views/customers/CustomerShow.vue";
+import CustomerEdit from "../views/customers/CustomerEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,11 @@ const routes = [
     path: "/customers/:id",
     name: "customers.show",
     component: CustomerShow
+  },
+  {
+    path: "/customers/:id/edit",
+    name: "customers.edit",
+    component: CustomerEdit
   }
 ];
 
