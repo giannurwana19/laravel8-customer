@@ -18,7 +18,7 @@
           </router-link>
         </li>
         <li>
-          <a href="#"> Logout</a>
+          <router-link to="/logout">Logout</router-link>
         </li>
       </ul>
     </nav>

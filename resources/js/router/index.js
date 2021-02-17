@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import ExampleComponent from "../components/ExampleComponent.vue";
+import Logout from "../components/Logout.vue";
 import CustomerIndex from "../views/customers/CustomerIndex.vue";
 import CustomerCreate from "../views/customers/CustomerCreate.vue";
 import CustomerShow from "../views/customers/CustomerShow.vue";
@@ -37,6 +38,11 @@ const routes = [
     name: "customers.edit",
     meta: { title: "Edit Customer" },
     component: CustomerEdit
+  },
+  {
+    path: "/logout",
+    name: "logout",
+    component: Logout
   }
 ];
 
