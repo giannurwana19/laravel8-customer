@@ -18,6 +18,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Customer::class);
+
         $customer = Customer::latest()->get();
 
         return ResourcesCustomer::collection($customer);
@@ -44,6 +46,8 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
+        $this->authorize('viewAny', $customer);
+
         return new ResourcesCustomer($customer);
     }
 
@@ -56,6 +60,8 @@ class CustomerController extends Controller
      */
     public function update(CustomerRequest $request, Customer $customer)
     {
+        $this->authorize('update', $customer);
+
         $customer->update($request->validated());
 
         return (new ResourcesCustomer($customer))->response()->setStatusCode(200);
@@ -69,6 +75,8 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
+        $this->authorize('delete', $customer);
+
         $customer->delete();
 
         return response()->json([

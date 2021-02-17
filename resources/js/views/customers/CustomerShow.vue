@@ -7,11 +7,16 @@
       <div class="col-md-2">
         <router-link
           :to="{ name: 'customers.edit', params: { id: $route.params.id } }"
+          v-if="customer.user_id == userId"
           class="btn btn-outline-success"
         >
           Edit
         </router-link>
-        <button class="btn btn-outline-danger" @click="destroy">
+        <button
+          class="btn btn-outline-danger"
+          @click="destroy"
+          v-if="customer.user_id == userId"
+        >
           Delete
         </button>
       </div>
@@ -49,8 +54,13 @@ export default {
   data() {
     return {
       customer: {},
-      loading: true
+      loading: true,
+      userId: null
     };
+  },
+
+  created() {
+    this.userId = this.$parent.user.id; // mengambil dari comp parent App
   },
 
   methods: {

@@ -2588,6 +2588,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -2596,8 +2601,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       customer: {},
-      loading: true
+      loading: true,
+      userId: null
     };
+  },
+  created: function created() {
+    this.userId = this.$parent.user.id; // mengambil dari comp parent App
   },
   methods: {
     getCustomer: function getCustomer() {
@@ -40919,28 +40928,32 @@ var render = function() {
             "div",
             { staticClass: "col-md-2" },
             [
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-outline-success",
-                  attrs: {
-                    to: {
-                      name: "customers.edit",
-                      params: { id: _vm.$route.params.id }
-                    }
-                  }
-                },
-                [_vm._v("\n        Edit\n      ")]
-              ),
+              _vm.customer.user_id == _vm.userId
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-outline-success",
+                      attrs: {
+                        to: {
+                          name: "customers.edit",
+                          params: { id: _vm.$route.params.id }
+                        }
+                      }
+                    },
+                    [_vm._v("\n        Edit\n      ")]
+                  )
+                : _vm._e(),
               _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-outline-danger",
-                  on: { click: _vm.destroy }
-                },
-                [_vm._v("\n        Delete\n      ")]
-              )
+              _vm.customer.user_id == _vm.userId
+                ? _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-danger",
+                      on: { click: _vm.destroy }
+                    },
+                    [_vm._v("\n        Delete\n      ")]
+                  )
+                : _vm._e()
             ],
             1
           )
