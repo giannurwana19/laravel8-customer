@@ -29,24 +29,20 @@
         class="navbar navbar-light bg-light mt-4 border-bottom border-secondary"
       >
         <div class="navbar-brand">{{ title }}</div>
-        <div>
-          <input
-            class="form-control mr-sm-2"
-            id="searchTerm"
-            placeholder="Search..."
-          />
-        </div>
+        <Search />
       </nav>
 
       <div class="container-fluid pt-4">
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Search from "./components/Search.vue";
 export default {
+  components: { Search },
   props: ["user"],
   data() {
     return {
